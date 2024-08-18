@@ -1,0 +1,31 @@
+.header {
+  position:fixed;
+  top:0;
+  width: 100%;
+  z-index: 2;
+  border-bottom: 2px solid #DEB992;
+}
+
+.left-wrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+}
+
+
+img {
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+  height: 3em;
+  object-fit: cover; 
+}
+
+.justify-content-end {
+  z-index: 10;
+  display: flex; 
+  position: fixed;
+  top: 0; 
+  right: 1em;  
+  justify-content: flex-end;
+  align-items: flex-end;
+}
