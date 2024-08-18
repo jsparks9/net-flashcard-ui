@@ -9,8 +9,12 @@ import * as fromAuth from '../auth/auth.reducer'
 })
 export class HeaderComponent {
 
+  loggedIn$ = this.store.select(fromAuth.selectLoggedIn);
+
   constructor(
     private store: Store<fromAuth.AuthState>,
   ) { }
+
+
 
 }

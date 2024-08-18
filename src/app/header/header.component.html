@@ -1,6 +1,20 @@
 <ng-container>
   <header class="header">
-    <span>header comp</span>
+    <div class="left-wrap">
+      <div routerLink="">
+        <img src="assets/Logo.png">
+      </div>
+      <ul routerLink="">Home</ul>
+      <ul routerLink="/create">Create</ul>
+      <ul *ngIf="loggedIn$ | async">My Decks</ul>
+      <ul routerLink="/help">Help</ul>
+    </div>
+    <div class="justify-content-end">
+      <ul *ngIf="!(loggedIn$ | async)" routerLink="/login">
+        Log In
+      </ul>
+    </div>
+    
   </header>
 
 </ng-container>

@@ -18,13 +18,19 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CreateComponent } from './create/create.component';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    CreateComponent,
+    HelpPageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
