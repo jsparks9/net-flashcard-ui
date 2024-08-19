@@ -21,6 +21,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CreateComponent } from './create/create.component';
 import { HelpPageComponent } from './help-page/help-page.component';
 import { LoginComponent } from './login/login.component';
+import { DeckBoxComponent } from './deck-box/deck-box.component';
+import { TruncatePipe } from './utils/pipes/truncate';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     CreateComponent,
     HelpPageComponent,
-    LoginComponent
+    LoginComponent,
+    DeckBoxComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
