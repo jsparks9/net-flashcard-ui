@@ -1,5 +1,8 @@
 # .NET Full Stack Project
 
+- **[UI Repository](https://github.com/jsparks9/net-flashcard-ui)**: Frontend Angular Application
+- **[API Repository](https://github.com/jsparks9/net-flashcard-api)**: Backend ASP.NET Core API
+
 ## Overview
 
 This project is a full stack application built using .NET Core for the backend and Angular for the frontend. It includes a RESTful API and a dynamic user interface that allows interaction with the data.
