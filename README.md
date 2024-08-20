@@ -1,27 +1,64 @@
-# Client
+# .NET Full Stack Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+## Overview
 
-## Development server
+This project is a full stack application built using .NET Core for the backend and Angular for the frontend. It includes a RESTful API and a dynamic user interface that allows interaction with the data.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- **Backend**: ASP.NET Core Web API
+- **Frontend**: Angular 15
+- **Database**: SQL Server (via Entity Framework Core)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Started
 
-## Build
+### Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- .NET 8 SDK
+- Node.js and npm
+- Angular CLI
+- Docker Desktop (containerizes SQL Server)
 
-## Running unit tests
+### Setup
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/jsparks9/net-flashcard-ui.git
+   cd net-flashcard-ui
+   ```
 
-## Running end-to-end tests
+2. **Install frontend dependencies**:
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. **Set up the database**:
+   - Install Docker Desktop
+   - Run MySQL_Setup.sh
 
-## Further help
+4. **Run the application**:
+   - **Backend**:
+     ```bash
+     dotnet run
+     ```
+   - **Frontend**:
+     ```bash
+     ng serve
+     ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### API Documentation
+
+- **Base URL**: `https://localhost:7174/api`
+
+  Example endpoints:
+  - `GET /decks` - Retrieves all decks.
+  - `POST /decks` - Creates a new deck.
+  - `GET /decks/{id}` - Retrieves a specific deck by ID.
+
+### UI Access
+
+- **Frontend URL**: `http://localhost:4200`
+
+### Future Enhancements
+
+- Improved UI/UX
