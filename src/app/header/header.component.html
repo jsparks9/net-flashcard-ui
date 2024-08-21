@@ -13,6 +13,9 @@
       <ul class="selected" *ngIf="!(loggedIn$ | async)" routerLink="/login">
         Log In
       </ul>
+      <ul class="selected" *ngIf="(loggedIn$ | async)" routerLink=""  (click)="doLogout()">
+        Log Out
+      </ul>
     </div>
     
   </header>

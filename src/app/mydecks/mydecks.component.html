@@ -1,1 +1,12 @@
 <p>mydecks works!</p>
+<div class="center">
+  <div class="grid" >
+    <app-deck-box *ngFor="let deck of mydecks$ | async"
+    [deckId]= "deck.deckId"
+    [numCards] = "deck.cards.length"
+    [deckTitle] = "deck.deckName"
+    [deckDesc] = "deck.description"
+    [cards] = "deck.cards"
+    />
+  </div>
+</div>

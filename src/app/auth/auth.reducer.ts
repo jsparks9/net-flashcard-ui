@@ -1,5 +1,5 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { loginFailure, loginSuccess, logout, setDecks } from './auth.actions';
+import { loginFailure, loginSuccess, logout, setDecks, setMyDecks } from './auth.actions';
 import Deck from '../models/Deck';
 import Card from '../models/Card';
 
@@ -40,6 +40,8 @@ const _authReducer = createReducer(
       ...state,
       loggedIn: false,
       user: null,
+      myCards: [],
+      mydecks: [],
       error: loginFailureResp,
     };
   }), 
@@ -48,6 +50,8 @@ const _authReducer = createReducer(
       ...state,
       loggedIn: false,
       user: null,
+      myCards: [],
+      mydecks: [],
       error: null
     };
   }),
@@ -55,6 +59,12 @@ const _authReducer = createReducer(
     return {
       ...state,
       decks: decks
+    }
+  }),
+  on(setMyDecks, (state, { decks }) => {
+    return {
+      ...state,
+      myDecks: decks
     }
   }),
 
@@ -69,6 +79,7 @@ export const selectAuthState = createFeatureSelector<AuthState>('auth');
 export const selectBaseUrl = createSelector(selectAuthState, s => s.baseUrl);
 
 export const selectAllDecks = createSelector(selectAuthState, s => s.decks);
+export const selectMyDecks = createSelector(selectAuthState, s => s.myDecks);
 
 export const selectLoggedIn = createSelector(selectAuthState, s => s.loggedIn);
 
