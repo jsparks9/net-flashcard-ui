@@ -1,19 +1,30 @@
 <div class="overlay">
   <div class="overlay-content">
-    <h2>Edit Deck</h2>
-    <label for="deckName">Deck Name:</label>
-    <input id="deckName" type="text" [(ngModel)]="deckName" />
-
-    <label for="description">Description:</label>
-    <textarea id="description" [(ngModel)]="description"></textarea>
-
-    <div *ngIf="message" [ngClass]="{'error': isError, 'success': !isError}">
-      {{ message }}
+    <h2 class="overlay-title">Flash Cards</h2>
+  
+    <div class="button-group">
+      <button class="btn-toggle" (click)="toggleView()">Card/Table Toggle</button>
+      <button class="btn-add" (click)="addFlashCard()">Add Flash Card</button>
     </div>
 
-    <div class="buttons">
-      <button (click)="saveDeck()">Save</button>
-      <button (click)="close()">Cancel</button>
-    </div>
+    <table class="flash-card-table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let card of deck.cards">
+          <td>{{ card.quizText }}</td>
+          <td>{{ card.answer }}</td>
+          <td class="options">
+            <button class="btn-edit" (click)="editCard(card)"><i class="bi bi-pencil-square"></i></button>
+            <button class="btn-delete emoji" (click)="deleteCard(card)"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
