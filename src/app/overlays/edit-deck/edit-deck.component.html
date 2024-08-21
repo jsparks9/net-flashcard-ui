@@ -38,4 +38,10 @@
   (overlayCreateCardClosed)="handleCreateOverlayClosed()"
   [uri] = "'/Deck/deck/' + deck.deckId"
   [deckId] = "deck.deckId"
+  [title] = "'Add a New Card'"
   ></app-create-card>
+<app-patch-deck
+  #editDeckOverlay
+  (editDeckoverlayClosed)="handleEditDeckoverlayClosed()"
+  [deck]="deck"
+></app-patch-deck>

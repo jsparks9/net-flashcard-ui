@@ -8,19 +8,20 @@ import Deck from 'src/app/models/Deck';
 import { setMyDecks } from 'src/app/auth/auth.actions';
 
 @Component({
-  selector: 'app-create-deck',
-  templateUrl: './create-deck.component.html',
-  styleUrls: ['./create-deck.component.css']
+  selector: 'app-patch-deck',
+  templateUrl: './patch-deck.component.html',
+  styleUrls: ['./patch-deck.component.css']
 })
-export class CreateDeckComponent {
-  
+export class PatchDeckComponent {
+  @Input() deck!: Deck;
+
   isVisible = false;
   deckName = '';
   description = '';
   message = '';
   isError = false;
 
-  @Output() overlayClosed = new EventEmitter<void>();
+  @Output() editDeckoverlayClosed = new EventEmitter<void>();
 
   constructor(
     private deckService: DeckService,
@@ -31,39 +32,42 @@ export class CreateDeckComponent {
     this.isVisible = true;
   }
 
-  closeOverlay() {
+  closePatchDeckOverlay() {
     this.isVisible = false;
-    this.overlayClosed.emit();
+    this.editDeckoverlayClosed.emit();
     this.clearForm();
   }
 
-  createDeck() {
+  patchDeck() {
     // Trim the input values
     this.deckName = this.deckName.trim();
     this.description = this.description.trim();
 
-    // Basic validation
-    if (!this.deckName || this.deckName.length === 0) {
-        this.displayMessage('Deck name cannot be empty.', true);
-        return;
+    if (!this.deckName && !this.description) {
+      this.displayMessage('Either deck name or description must be provided.', true);
+      return;
     }
-    if (this.deckName.length < 3) {
-        this.displayMessage('Deck name must be at least 3 characters long.', true);
-        return;
+    if (this.deckName) {
+      if (this.deckName.length < 3) {
+          this.displayMessage('Deck name must be at least 3 characters long.', true);
+          return;
+      }
+      if (this.deckName.length > 50) {
+          this.displayMessage('Deck name cannot exceed 50 characters.', true);
+          return;
+      }
     }
-    if (this.deckName.length > 50) {
-        this.displayMessage('Deck name cannot exceed 50 characters.', true);
-        return;
-    }
-    if (this.description.length > 200) {
+
+    // Validate description if provided
+    if (this.description && this.description.length > 200) {
         this.displayMessage('Description cannot exceed 200 characters.', true);
         return;
     }
 
-    this.deckService.createDeck({ deckName: this.deckName, description: this.description, cards: [] })
+    this.deckService.patchDeck({ deckName: this.deckName, description: this.description}, this.deck.deckId)
       .pipe(
         catchError(err => {
-          let errorMessage = 'Failed to create deck. ';
+          let errorMessage = 'Failed to edit deck. ';
           console.log(err);
           
           if (err.error && err.error.errors) {
@@ -91,15 +95,32 @@ export class CreateDeckComponent {
           return of(null); // Handle the error
         })
       )
-      .subscribe(response => {
-        if (response) {
+      .subscribe({
+        next: () => {
           this.displayMessage('Deck created successfully!', false);
       
           this.store.select(selectMyDecks).pipe(
             take(1),
-            map((existingDecks: Deck[]) => [...existingDecks, response as Deck]),
+            map((existingDecks: Deck[]) => {
+              // Patch this.deck with the new values if they are non-empty
+              const patchedDeck = {
+                ...this.deck,
+                deckName: this.deckName && this.deckName.trim() !== '' ? this.deckName : this.deck.deckName,
+                description: this.description && this.description.trim() !== '' ? this.description : this.deck.description,
+              };
+              console.log(patchedDeck);
+              
+              // Replace the deck in the state
+              return existingDecks.map(deck => {
+                if (deck.deckId === this.deck.deckId) {
+                  return patchedDeck; // Replace with patched deck
+                }
+                return deck;
+              });
+            }),
             tap((updatedDecks: Deck[]) => this.store.dispatch(setMyDecks({ decks: updatedDecks })))
           ).subscribe();
+          
         }
       });
   }
@@ -110,7 +131,7 @@ export class CreateDeckComponent {
     this.isError = isError;
     setTimeout(() => {
       this.message = '';
-      !isError && this.closeOverlay();
+      !isError && this.closePatchDeckOverlay();
     }, 3000); // Message disappears after 3 seconds
   }
 

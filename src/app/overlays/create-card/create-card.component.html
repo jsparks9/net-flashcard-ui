@@ -1,6 +1,6 @@
 <div class="overlay" *ngIf="isVisible">
   <div class="overlay-content">
-    <h3>Create New Card</h3>
+    <h3>{{this.title}}</h3>
     <form (ngSubmit)="createCard()">
       <label for="quizText">Quiz Text:</label>
       <textarea id="quizText" [(ngModel)]="quizText" name="quizText" required></textarea>

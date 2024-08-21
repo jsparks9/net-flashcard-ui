@@ -15,6 +15,7 @@ import Card from 'src/app/models/Card';
   styleUrls: ['./create-card.component.css']
 })
 export class CreateCardComponent {
+  @Input() title!: string;
   @Input() uri!: string;
   @Input() deckId!: string;
 
