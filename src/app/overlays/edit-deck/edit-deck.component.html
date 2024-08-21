@@ -1,0 +1,47 @@
+<div class="overlay">
+  <div class="overlay-content">
+    <button class="overlay-close-button" (click)="close()">✕</button>
+    
+    <h2 class="overlay-title">{{ deck.deckName }}</h2>
+    <p class="overlay-description">{{ deck.description }}</p>
+    
+    <div class="button-group">
+      <button class="btn-toggle" (click)="toggleView()">Card/Table Toggle</button>
+      <button class="btn-add" (click)="showCreateCardOverlay()">Add Card</button>
+      <button class="btn-edit-deck" (click)="editDeck()">Edit Info</button>
+      <button class="btn-delete-deck" (click)="deleteDeck()">Delete</button>
+    </div>
+    
+    <table class="flash-card-table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let card of deck.cards">
+          <td>{{ card.quizText }}</td>
+          <td>{{ card.answer }}</td>
+          <td class="options">
+            <button class="btn-edit" (click)="editCard(card)"><i class="bi bi-pencil-square"></i></button>
+            <button class="btn-delete emoji" (click)="deleteCard(card)"><i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-create-card 
+  #createCardOverlay 
+  (overlayCreateCardClosed)="handleCreateOverlayClosed()"
+  [uri] = "'/Deck/deck/' + deck.deckId"
+  [deckId] = "deck.deckId"
+  [title] = "'Add a New Card'"
+  ></app-create-card>
+<app-patch-deck
+  #editDeckOverlay
+  (editDeckoverlayClosed)="handleEditDeckoverlayClosed()"
+  [deck]="deck"
+></app-patch-deck>

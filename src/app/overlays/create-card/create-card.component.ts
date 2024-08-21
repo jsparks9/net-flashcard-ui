@@ -1,7 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { catchError, map, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { DeckService } from 'src/app/services/deck/deck.service';
+import * as fromAuth from 'src/app/auth/auth.reducer';
+import { Store } from '@ngrx/store';
+import { selectMyDecks } from 'src/app/auth/auth.reducer';
+import Deck from 'src/app/models/Deck';
+import { setMyDecks } from 'src/app/auth/auth.actions';
+import Card from 'src/app/models/Card';
 
 @Component({
   selector: 'app-create-card',
@@ -9,6 +15,10 @@ import { DeckService } from 'src/app/services/deck/deck.service';
   styleUrls: ['./create-card.component.css']
 })
 export class CreateCardComponent {
+  @Input() title!: string;
+  @Input() uri!: string;
+  @Input() deckId!: string;
+
   isVisible = false;
   quizText = '';
   answer = '';
@@ -16,9 +26,12 @@ export class CreateCardComponent {
   message = '';
   isError = false;
 
-  @Output() overlayClosed = new EventEmitter<void>();
+  @Output() overlayCreateCardClosed = new EventEmitter<void>();
 
-  constructor(private deckService: DeckService) {}
+  constructor(
+    private deckService: DeckService,
+    private store: Store<fromAuth.AuthState>
+  ) {}
 
   openOverlay() {
     this.isVisible = true;
@@ -26,7 +39,7 @@ export class CreateCardComponent {
 
   closeOverlay() {
     this.isVisible = false;
-    this.overlayClosed.emit();
+    this.overlayCreateCardClosed.emit();
     this.clearForm();
   }
 
@@ -62,7 +75,7 @@ export class CreateCardComponent {
   createCard() {
     this.quizText = this.quizText.trim();
     this.answer = this.answer.trim();
-
+  
     if (!this.quizText || this.quizText.length === 0) {
       this.displayMessage('Quiz text cannot be empty.', true);
       return;
@@ -79,26 +92,26 @@ export class CreateCardComponent {
       this.displayMessage('Answer cannot exceed 700 characters.', true);
       return;
     }
-
+  
     const card = {
       QuizText: this.quizText,
       Answer: this.answer,
       Image: this.imageBase64
     };
-
-    this.deckService.createCard(card) 
+  
+    this.deckService.createCard(card, this.uri)
       .pipe(
         catchError(err => {
           let errorMessage = 'Failed to create card. ';
           console.log(err);
-
+  
           if (err.error && err.error.errors) {
             const errors = err.error.errors;
-
+  
             if (errors.status) {
               errorMessage += `HTTP Code ${errors.status}: `;
             }
-
+  
             Object.keys(errors).forEach(key => {
               if (key !== 'title' && key !== 'traceId' && key !== 'type' && key !== 'status') {
                 errorMessage += `${errors[key]}. `;
@@ -109,7 +122,7 @@ export class CreateCardComponent {
           } else {
             errorMessage += 'Please try again later.';
           }
-
+  
           this.displayMessage(errorMessage, true);
           return of(null); // Handle the error
         })
@@ -117,9 +130,37 @@ export class CreateCardComponent {
       .subscribe(response => {
         if (response) {
           this.displayMessage('Card created successfully!', false);
+          this.store.select(selectMyDecks).pipe(
+            take(1),
+            map((existingDecks: Deck[]) => {
+              // Find the deck where the card needs to be added
+              const deckToUpdate = existingDecks.find(deck => deck.deckId === this.deckId);
+      
+              if (deckToUpdate) {
+                // Add the new card to the deck's cards array
+                const updatedDeck = {
+                  ...deckToUpdate,
+                  cards: [...deckToUpdate.cards, response as Card]
+                };
+      
+                // Replace the old deck with the updated deck in the array
+                const updatedDecks = existingDecks.map(deck =>
+                  deck.deckId === this.deckId ? updatedDeck : deck
+                );
+      
+                return updatedDecks;
+              } else {
+                return existingDecks;
+              }
+            }),
+            tap((updatedDecks: Deck[]) => {
+              this.store.dispatch(setMyDecks({ decks: updatedDecks }));
+            })
+          ).subscribe();  // <-- This subscribe() ensures the observable chain completes
         }
       });
   }
+  
 
   private displayMessage(msg: string, isError: boolean) {
     this.message = msg;

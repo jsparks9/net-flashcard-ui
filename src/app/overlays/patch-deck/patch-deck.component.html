@@ -1,0 +1,21 @@
+<div class="overlay" *ngIf="isVisible">
+  <div class="overlay-content">
+    <h3>Edit Deck</h3>
+    <form (ngSubmit)="patchDeck()">
+      <label for="deckName">Deck Name:</label>
+      <input type="text" id="deckName" [(ngModel)]="deck.deckName" name="deckName" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" [(ngModel)]="deck.description" name="description"></textarea>
+
+
+      <button type="submit">Edit</button>
+      <button type="button" (click)="closePatchDeckOverlay()">Cancel</button>
+    </form>
+
+    <!-- Message Display -->
+    <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
+      {{ message }}
+    </div>
+  </div>
+</div>
