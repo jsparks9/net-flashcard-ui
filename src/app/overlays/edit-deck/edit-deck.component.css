@@ -8,9 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 12;
 }
 
 .overlay-content {
+  position:relative;
   background-color: white;
   padding: 30px;
   border-radius: 8px;
@@ -119,4 +121,31 @@
 .btn-delete:hover {
   background-color: #dc3545; /* Background changes on hover */
   color: white; /* Icon color changes on hover */
+}
+
+.overlay-close-button {
+  position: absolute;
+  height: 1.5em;
+  width: 1.5em;
+  top: 0px;
+  right: 0px;
+  background: rgba(255, 0, 0, 0); 
+  border: 2px solid white; 
+  border-radius: 8px; 
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+  color: red; /* Red color for the 'X' */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Remove padding to ensure proper centering */
+  line-height: 1; /* Ensures that text is vertically centered */
+}
+
+
+.overlay-close-button:hover {
+  background: red; 
+  color: white;
+  border: 2px solid red;
 }

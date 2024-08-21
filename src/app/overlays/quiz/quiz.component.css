@@ -12,6 +12,7 @@
 }
 
 .overlay-content {
+  position:relative;
   background: #fefefe; /* Softer white background */
   padding: 30px;
   border-radius: 10px;
@@ -37,16 +38,30 @@
 }
 
 .overlay-close-button {
-  background: transparent;
-  border: none;
+  position: absolute;
+  height: 1.5em;
+  width: 1.5em;
+  top: 0px;
+  right: 0px;
+  background: rgba(255, 0, 0, 0); 
+  border: 2px solid white; 
+  border-radius: 8px; 
   font-size: 24px;
   cursor: pointer;
-  transition: color 0.3s ease;
-  margin-left: auto; /* Aligns the close button to the right */
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+  color: red; /* Red color for the 'X' */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Remove padding to ensure proper centering */
+  line-height: 1; /* Ensures that text is vertically centered */
 }
 
+
 .overlay-close-button:hover {
-  color: #d9534f; /* Softer red for hover effect */
+  background: red; 
+  color: white;
+  border: 2px solid red;
 }
 
 .overlay-body {
