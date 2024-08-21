@@ -1,6 +1,8 @@
 export default interface Card {
-  card_id: string;
-  quiz_text: string;
+  cardId: string;
+  user: string;
+  quizText: string;
+  answer: string;
   image?: string;
-  answers: string[];
+  createdAt: Date;
 }

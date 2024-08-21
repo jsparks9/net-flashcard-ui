@@ -26,16 +26,13 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(loginSuccess),
-        tap(({ loginSuccessResp }) => {
-          if (loginSuccessResp.admin) {
-            this.router.navigateByUrl('/company');
-          } else {
-            this.router.navigateByUrl('/');
-          }
+        tap(() => {
+          this.router.navigateByUrl('/mydecks');
         })
       ),
-      {dispatch: false}
+    { dispatch: false }
   );
+  
 
   constructor(
     private actions$: Actions,
