@@ -14,10 +14,10 @@ import { setMyDecks } from 'src/app/auth/auth.actions';
 })
 export class PatchDeckComponent {
   @Input() deck!: Deck;
+  @Input() deckName!: string;
+  @Input() description!: string;
 
   isVisible = false;
-  deckName = '';
-  description = '';
   message = '';
   isError = false;
 
@@ -45,6 +45,10 @@ export class PatchDeckComponent {
 
     if (!this.deckName && !this.description) {
       this.displayMessage('Either deck name or description must be provided.', true);
+      return;
+    }
+    if (this.deckName == this.deck.deckName && this.description == this.deck.description) {
+      this.displayMessage('No changes were made to the deck name or description.', true);
       return;
     }
     if (this.deckName) {

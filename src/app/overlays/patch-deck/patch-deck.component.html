@@ -3,10 +3,10 @@
     <h3>Edit Deck</h3>
     <form (ngSubmit)="patchDeck()">
       <label for="deckName">Deck Name:</label>
-      <input type="text" id="deckName" [(ngModel)]="deck.deckName" name="deckName" required>
+      <input type="text" id="deckName" [(ngModel)]="deckName" name="deckName" required>
 
       <label for="description">Description:</label>
-      <textarea id="description" [(ngModel)]="deck.description" name="description"></textarea>
+      <textarea id="description" [(ngModel)]="description" name="description"></textarea>
 
 
       <button type="submit">Edit</button>
