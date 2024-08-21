@@ -29,6 +29,7 @@ import { CreateDeckComponent } from './overlays/create-deck/create-deck.componen
 import { CreateCardComponent } from './overlays/create-card/create-card.component';
 import { EditDeckComponent } from './overlays/edit-deck/edit-deck.component';
 import { PatchDeckComponent } from './overlays/patch-deck/patch-deck.component';
+import { RemoveCardComponent } from './overlays/remove-card/remove-card.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { PatchDeckComponent } from './overlays/patch-deck/patch-deck.component';
     CreateDeckComponent,
     CreateCardComponent,
     EditDeckComponent,
-    PatchDeckComponent
+    PatchDeckComponent,
+    RemoveCardComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,8 @@ import { Component, Output, EventEmitter, Input, ViewChild } from '@angular/core
 import Deck from 'src/app/models/Deck';
 import { CreateCardComponent } from '../create-card/create-card.component';
 import { PatchDeckComponent } from '../patch-deck/patch-deck.component';
+import { RemoveCardComponent } from '../remove-card/remove-card.component';
+import Card from 'src/app/models/Card';
 
 @Component({
   selector: 'app-edit-deck',
@@ -15,6 +17,7 @@ export class EditDeckComponent {
   @Output() closeOverlay = new EventEmitter<void>();
   @ViewChild('createCardOverlay') createCardOverlay: CreateCardComponent | undefined;
   @ViewChild('editDeckOverlay') editDeckOverlay: PatchDeckComponent | undefined;
+  @ViewChild('removeCardOverlay') removeCardOverlay: RemoveCardComponent | undefined;
 
   saveDeck() {
     throw new Error('Method not implemented.');
@@ -46,11 +49,12 @@ export class EditDeckComponent {
     // Implement the logic to edit the selected card
   }
 
-  deleteCard(card: any) {
-    console.log("Delete Card", card);
-    // Implement the logic to delete the selected card
+  removeCard(card: Card) {
+    this.removeCardOverlay?.openOverlay(card);
   }
 
   handleCreateOverlayClosed() {}
   handleEditDeckoverlayClosed() {}
+  handleRemoveCardoverlayClosed() {}
+  
 }
