@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import UserInfo from '../models/UserInfo';
+import Deck from '../models/Deck';
 
 
 export const loginRequest = createAction(
@@ -19,4 +20,14 @@ export const loginFailure = createAction(
 
 export const logout = createAction(
   '[Auth] Logout'
+);
+
+export const setDecks = createAction(
+  '[Auth] Set Decks',
+  props<{ decks: Deck[] }>()
+);
+
+export const setMyDecks = createAction(
+  '[Auth] Set Decks',
+  props<{ decks: Deck[] }>()
 );

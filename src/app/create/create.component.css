@@ -6,21 +6,42 @@
 .box-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
+  gap: 40px; /* Increased the gap for better spacing */
+  margin-top: 40px;
 }
 
 .box {
-  width: 150px;
-  height: 150px;
+  width: 180px; /* Slightly increased width */
+  height: 180px; /* Slightly increased height */
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid black;
-  font-size: 18px;
+  border: 2px solid #444; /* Darker border color */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 20px; /* Slightly larger font size */
+  font-weight: bold; /* Bolder font */
   cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+/* Specific styles for each box */
+.deck-box {
+  background-color: #cce5ff; /* Light blue background */
+  color: #004085; /* Dark blue text */
+}
+
+.card-box {
+  background-color: #d4edda; /* Light green background */
+  color: #155724; /* Dark green text */
 }
 
 .box:hover {
-  background-color: #f0f0f0; /* Optional: Add a hover effect */
+  background-color: #f8f9fa; /* Light gray on hover */
+  transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+h2 {
+  color: #333; /* Dark gray text for the heading */
+  font-family: 'Arial', sans-serif; /* Set font for the heading */
+  margin-bottom: 20px;
 }

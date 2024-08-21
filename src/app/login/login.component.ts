@@ -17,10 +17,15 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
+    console.log("Submit button clicked");
     const creds = {
       username: this.username,
       password: this.password
     };
     this.store.dispatch(loginRequest({ creds }));
+  }
+
+  isFormValid(): boolean {
+    return this.username.trim() !== '' && this.password.trim() !== '';
   }
 }

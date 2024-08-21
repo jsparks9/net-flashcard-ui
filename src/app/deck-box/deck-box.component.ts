@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Card from '../models/Card';
+import Deck from '../models/Deck';
 
 @Component({
   selector: 'app-deck-box',
@@ -7,9 +7,22 @@ import Card from '../models/Card';
   styleUrls: ['./deck-box.component.css']
 })
 export class DeckBoxComponent {
-  @Input() deckId: string = "";
-  @Input() numCards: number = 0;
-  @Input() deckTitle: string = "";
-  @Input() deckDesc: string = "";
-  @Input() cards: Card[] = [];
+  @Input() deck: Deck = {
+    deckId: "",
+    user: "",
+    deckName: "",
+    description: "",
+    createdAt: new Date(),
+    cards: []
+  };
+
+  showOverlay = false;
+
+  toggleOverlay() {
+    this.showOverlay = !this.showOverlay;
+  }
+
+  handleCloseOverlay() {
+    this.showOverlay = false;
+  }
 }

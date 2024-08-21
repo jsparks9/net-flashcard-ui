@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromAuth from '../auth/auth.reducer'
+import { logout } from '../auth/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,8 @@ export class HeaderComponent {
     private store: Store<fromAuth.AuthState>,
   ) { }
 
-
+  doLogout(): void {
+    this.store.dispatch(logout());
+  }
 
 }
