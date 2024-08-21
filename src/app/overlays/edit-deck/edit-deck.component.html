@@ -1,0 +1,19 @@
+<div class="overlay">
+  <div class="overlay-content">
+    <h2>Edit Deck</h2>
+    <label for="deckName">Deck Name:</label>
+    <input id="deckName" type="text" [(ngModel)]="deckName" />
+
+    <label for="description">Description:</label>
+    <textarea id="description" [(ngModel)]="description"></textarea>
+
+    <div *ngIf="message" [ngClass]="{'error': isError, 'success': !isError}">
+      {{ message }}
+    </div>
+
+    <div class="buttons">
+      <button (click)="saveDeck()">Save</button>
+      <button (click)="close()">Cancel</button>
+    </div>
+  </div>
+</div>

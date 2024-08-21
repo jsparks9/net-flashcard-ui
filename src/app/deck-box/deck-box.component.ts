@@ -25,17 +25,23 @@ export class DeckBoxComponent {
   ) {}
 
   showOverlay = false;
+  showEditDeckOverlay = false;
 
   toggleOverlay() {
-    this.showOverlay = !this.showOverlay;
+    if (this.deck.cards.length > 0)
+      this.showOverlay = !this.showOverlay;
   }
 
   editDeck(event: Event) {
     event.stopPropagation();
-    console.log("Edit Deck Clicked");
+    this.showEditDeckOverlay = !this.showEditDeckOverlay;
   }
 
   handleCloseOverlay() {
     this.showOverlay = false;
+  }
+
+  handleEditDeckClose() {
+    this.showEditDeckOverlay = false;
   }
 }

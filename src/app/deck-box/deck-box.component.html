@@ -29,3 +29,9 @@
   [deck]="deck"
   (closeOverlay)="handleCloseOverlay()">
 </app-quiz>
+
+<app-edit-deck
+  *ngIf="showEditDeckOverlay"
+  [deck]="deck"
+  (closeOverlay)="handleEditDeckClose()">
+</app-edit-deck>

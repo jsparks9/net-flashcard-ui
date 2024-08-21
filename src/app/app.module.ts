@@ -27,6 +27,7 @@ import { MydecksComponent } from './mydecks/mydecks.component';
 import { QuizComponent } from './overlays/quiz/quiz.component';
 import { CreateDeckComponent } from './overlays/create-deck/create-deck.component';
 import { CreateCardComponent } from './overlays/create-card/create-card.component';
+import { EditDeckComponent } from './overlays/edit-deck/edit-deck.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { CreateCardComponent } from './overlays/create-card/create-card.componen
     MydecksComponent,
     QuizComponent,
     CreateDeckComponent,
-    CreateCardComponent
+    CreateCardComponent,
+    EditDeckComponent
   ],
   imports: [
     BrowserModule,
