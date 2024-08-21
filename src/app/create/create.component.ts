@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CreateDeckComponent } from '../overlays/create-deck/create-deck.component';
+import { CreateCardComponent } from '../overlays/create-card/create-card.component';
 
 @Component({
   selector: 'app-create',
@@ -8,9 +9,14 @@ import { CreateDeckComponent } from '../overlays/create-deck/create-deck.compone
 })
 export class CreateComponent {
   @ViewChild('deckOverlay') deckOverlay: CreateDeckComponent | undefined;
+  @ViewChild('cardOverlay') cardOverlay: CreateCardComponent | undefined;
 
-  showOverlay() {
+  showDeckOverlay() {
     this.deckOverlay?.openOverlay();
+  }
+
+  showCardOverlay() {
+    this.cardOverlay?.openOverlay();
   }
 
   handleOverlayClosed() {

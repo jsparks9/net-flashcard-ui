@@ -26,6 +26,7 @@ import { TruncatePipe } from './utils/pipes/truncate';
 import { MydecksComponent } from './mydecks/mydecks.component';
 import { QuizComponent } from './overlays/quiz/quiz.component';
 import { CreateDeckComponent } from './overlays/create-deck/create-deck.component';
+import { CreateCardComponent } from './overlays/create-card/create-card.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { CreateDeckComponent } from './overlays/create-deck/create-deck.componen
     TruncatePipe,
     MydecksComponent,
     QuizComponent,
-    CreateDeckComponent
+    CreateDeckComponent,
+    CreateCardComponent
   ],
   imports: [
     BrowserModule,
