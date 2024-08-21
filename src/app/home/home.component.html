@@ -1,4 +1,7 @@
 <div class="center">
+  <div *ngIf="(decks$ | async)?.length === 0">
+    <h2>No Decks Found!</h2>
+  </div>
   <div class="grid" >
     <app-deck-box *ngFor="let deck of decks$ | async"
     [deck]= "deck"

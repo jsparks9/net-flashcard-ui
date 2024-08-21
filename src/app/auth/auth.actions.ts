@@ -28,6 +28,6 @@ export const setDecks = createAction(
 );
 
 export const setMyDecks = createAction(
-  '[Auth] Set Decks',
+  '[Auth] Set My Decks',
   props<{ decks: Deck[] }>()
 );

@@ -67,16 +67,16 @@ export class CreateCardComponent {
       this.displayMessage('Quiz text cannot be empty.', true);
       return;
     }
-    if (this.quizText.length > 300) {
-      this.displayMessage('Quiz text cannot exceed 300 characters.', true);
+    if (this.quizText.length > 500) {
+      this.displayMessage('Quiz text cannot exceed 500 characters.', true);
       return;
     }
     if (!this.answer || this.answer.length === 0) {
       this.displayMessage('Answer cannot be empty.', true);
       return;
     }
-    if (this.answer.length > 100) {
-      this.displayMessage('Answer cannot exceed 100 characters.', true);
+    if (this.answer.length > 700) {
+      this.displayMessage('Answer cannot exceed 700 characters.', true);
       return;
     }
 
@@ -86,7 +86,7 @@ export class CreateCardComponent {
       Image: this.imageBase64
     };
 
-    this.deckService.createCard(card) // Replace with your appropriate service method
+    this.deckService.createCard(card) 
       .pipe(
         catchError(err => {
           let errorMessage = 'Failed to create card. ';

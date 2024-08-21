@@ -17,7 +17,6 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
-    console.log("Submit button clicked");
     const creds = {
       username: this.username,
       password: this.password

@@ -16,30 +16,54 @@
 .deck-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+    align-items: flex-start; /* Changed from center to flex-start */
+    margin-bottom: 10px; /* Reduced margin-bottom */
 }
 
 .text-white {
-  background: linear-gradient(90deg, #ff4e50, #ff6b6b); /* Strong red gradient */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;
-  margin-bottom: 20px;
+    background: linear-gradient(90deg, #ff4e50, #ff6b6b); /* Strong red gradient */
+    -webkit-background-clip: text;
+    background-clip: text; /* Standard property for compatibility */
+    -webkit-text-fill-color: transparent; /* For text transparency in Webkit browsers */
+    font-weight: bold;
+    margin-bottom: 10px; /* Reduced margin-bottom */
 }
+  
+
 
 .mulish {
     font-family: 'Mulish', sans-serif;
 }
 
+/* New container for deck info and edit button */
+.deck-info-container {
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    align-items: flex-end; /* Align to the right */
+    margin-left: 10px; /* Optional spacing from the title */
+}
+
+.deck-info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px; /* Spacing between info and button */
+}
+
 /* Text styling for the number of cards and deck title */
 .deck-cards-number-text {
     color: #6a6a6a; /* Muted grey for subtext */
+    margin-bottom: 5px; /* Reduced vertical spacing */
 }
 
-.deck-title-text {
-    color: #4a90e2; /* Blue that matches the light blue in the image */
-    margin-bottom: 20px;
+/* User information below description */
+.deck-user {
+    margin-top: 5px; /* Reduced space above the user info */
+    margin-left: 15px; /* Slight left margin */
+}
+
+.deck-user-text {
+    margin-top:-1em;
+    color: #6a6a6a; /* Muted grey for subtext */
 }
 
 /* Grid container for cards */
@@ -72,5 +96,24 @@
 
 .button-cell:hover {
     background-color: #c0392b; /* Darker red on hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* New Edit Button styling */
+.edit-button {
+    background-color: #3498db; /* Blue background color */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 5px; /* Slight spacing between card info and edit button */
+}
+
+.edit-button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
     transform: scale(1.05); /* Slight zoom effect on hover */
 }

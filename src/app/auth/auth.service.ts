@@ -17,7 +17,6 @@ export class AuthService {
   ) {}
 
   login(username: string, password: string) {
-    console.log("Reached Login");
     const request = {
       username,
       password

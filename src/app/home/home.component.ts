@@ -13,7 +13,7 @@ import { setDecks } from '../auth/auth.actions';
 export class HomeComponent implements OnInit {
   private initialized = false;
   user$ = this.store.select(fromAuth.selectUser);
-  decks$ = this.store.select(fromAuth.selectAllDecks);
+  decks$ = this.store.select(fromAuth.selectExploreDecks);
   
   constructor(
     private deckService: DeckService,

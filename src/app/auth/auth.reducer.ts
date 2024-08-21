@@ -79,6 +79,14 @@ export const selectAuthState = createFeatureSelector<AuthState>('auth');
 export const selectBaseUrl = createSelector(selectAuthState, s => s.baseUrl);
 
 export const selectAllDecks = createSelector(selectAuthState, s => s.decks);
+
+export const selectExploreDecks = createSelector(selectAuthState,
+  s => {
+    const username = s.user?.username;
+    return s.decks.filter(deck => deck.user !== username && deck.cards.length>0);
+  }
+);
+
 export const selectMyDecks = createSelector(selectAuthState, s => s.myDecks);
 
 export const selectLoggedIn = createSelector(selectAuthState, s => s.loggedIn);
