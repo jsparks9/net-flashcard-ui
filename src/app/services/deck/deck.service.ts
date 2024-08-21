@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as fromAuth from 'src/app/auth/auth.reducer';
 import Deck from 'src/app/models/Deck';
 import { combineLatest, filter, switchMap } from 'rxjs';
+import Card from 'src/app/models/Card';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,19 @@ export class DeckService {
       })
     );
   }
+
+  createDeck(deck: { deckName: string; description: string; cards: Card[] }) {
+    return combineLatest([this.user$, this.baseUrl$]).pipe(
+      filter(([user, baseUrl]) => user !== null && baseUrl !== undefined && baseUrl !== null),
+      switchMap(([user, baseUrl]) => {
+        const headers = new HttpHeaders()
+          .set('Authorization', `Bearer ${user.token}`)
+          .set('Content-Type', 'application/json');
+        return this.http.post(`${baseUrl}/Deck`, deck, { headers });
+      })
+    );
+  }
+  
   
   
 
