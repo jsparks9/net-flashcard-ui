@@ -1,21 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import User from "../models/User";
-
-const baseUrl = 'http://localhost:8080'
+import { filter, switchMap } from 'rxjs';
+import UserInfo from "../models/UserInfo";
+import { Store } from '@ngrx/store';
+import * as fromAuth from 'src/app/auth/auth.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  baseUrl$ = this.store.select(fromAuth.selectBaseUrl);
 
-  login(username: string, password: string): Observable<any> {
+  constructor(
+    private store: Store<fromAuth.AuthState>,
+    private http: HttpClient
+  ) {}
+
+  login(username: string, password: string) {
     const request = {
       username,
       password
-    }
-    return this.http.post<User>(`${baseUrl}/users/login`, request);
+    };
+    
+    return this.baseUrl$.pipe(
+      filter(baseUrl => baseUrl !== undefined && baseUrl !== null),
+      switchMap(baseUrl => this.http.post<UserInfo>(`${baseUrl}/Auth/login`, request))
+    );
+    
   }
 }

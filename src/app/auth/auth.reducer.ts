@@ -1,13 +1,17 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { loginFailure, loginSuccess, logout } from './auth.actions';
 
+const baseUrl = "https://localhost:7174/api"
+
 export interface AuthState {
+  baseUrl: string;
   loggedIn: boolean;
   user: any;
   error: any;
 }
 
 export const initialState: AuthState = {
+  baseUrl: baseUrl,
   loggedIn: false,
   user: null,
   error: null
@@ -46,7 +50,13 @@ export function authReducer(state: AuthState | undefined, action: Action) {
   return _authReducer(state, action);
 }
 
+
+
+
+
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
+
+export const selectBaseUrl = createSelector(selectAuthState, s => s.baseUrl);
 
 export const selectLoggedIn = createSelector(selectAuthState, s => s.loggedIn);
 

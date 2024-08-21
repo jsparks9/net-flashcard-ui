@@ -4,13 +4,13 @@
       <div routerLink="">
         <img src="assets/Logo.png">
       </div>
-      <ul routerLink="">Home</ul>
+      <ul routerLink="">Explore</ul>
       <ul routerLink="/create">Create</ul>
-      <ul *ngIf="loggedIn$ | async">My Decks</ul>
+      <ul *ngIf="loggedIn$ | async" routerLink="/mydecks">My Decks</ul>
       <ul routerLink="/help">Help</ul>
     </div>
     <div class="justify-content-end">
-      <ul *ngIf="!(loggedIn$ | async)" routerLink="/login">
+      <ul class="selected" *ngIf="!(loggedIn$ | async)" routerLink="/login">
         Log In
       </ul>
     </div>

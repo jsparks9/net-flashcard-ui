@@ -4,6 +4,11 @@
   width: 100%;
   z-index: 2;
   border-bottom: 2px solid #DEB992;
+  background-color: white;
+}
+
+.selected {
+  font-weight: bold;
 }
 
 .left-wrap {

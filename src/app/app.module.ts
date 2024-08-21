@@ -23,6 +23,7 @@ import { HelpPageComponent } from './help-page/help-page.component';
 import { LoginComponent } from './login/login.component';
 import { DeckBoxComponent } from './deck-box/deck-box.component';
 import { TruncatePipe } from './utils/pipes/truncate';
+import { MydecksComponent } from './mydecks/mydecks.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { TruncatePipe } from './utils/pipes/truncate';
     HelpPageComponent,
     LoginComponent,
     DeckBoxComponent,
-    TruncatePipe
+    TruncatePipe,
+    MydecksComponent
   ],
   imports: [
     BrowserModule,
