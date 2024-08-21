@@ -49,6 +49,18 @@ export class DeckService {
       })
     );
   }
+
+  createCard(card: { QuizText: string; Answer: string; Image: string }) {
+    return combineLatest([this.user$, this.baseUrl$]).pipe(
+      filter(([user, baseUrl]) => user !== null && baseUrl !== undefined && baseUrl !== null),
+      switchMap(([user, baseUrl]) => {
+        const headers = new HttpHeaders()
+          .set('Authorization', `Bearer ${user.token}`)
+          .set('Content-Type', 'application/json');
+        return this.http.post(`${baseUrl}/Card`, card, { headers });
+      })
+    );
+  }
   
   
   

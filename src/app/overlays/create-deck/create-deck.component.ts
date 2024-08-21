@@ -29,6 +29,28 @@ export class CreateDeckComponent {
   }
 
   createDeck() {
+    // Trim the input values
+    this.deckName = this.deckName.trim();
+    this.description = this.description.trim();
+
+    // Basic validation
+    if (!this.deckName || this.deckName.length === 0) {
+        this.displayMessage('Deck name cannot be empty.', true);
+        return;
+    }
+    if (this.deckName.length < 3) {
+        this.displayMessage('Deck name must be at least 3 characters long.', true);
+        return;
+    }
+    if (this.deckName.length > 50) {
+        this.displayMessage('Deck name cannot exceed 50 characters.', true);
+        return;
+    }
+    if (this.description.length > 200) {
+        this.displayMessage('Description cannot exceed 200 characters.', true);
+        return;
+    }
+
     this.deckService.createDeck({ deckName: this.deckName, description: this.description, cards: [] })
       .pipe(
         catchError(err => {

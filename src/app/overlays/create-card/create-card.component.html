@@ -1,0 +1,26 @@
+<div class="overlay" *ngIf="isVisible">
+  <div class="overlay-content">
+    <h3>Create New Card</h3>
+    <form (ngSubmit)="createCard()">
+      <label for="quizText">Quiz Text:</label>
+      <textarea id="quizText" [(ngModel)]="quizText" name="quizText" required></textarea>
+
+      <label for="answer">Answer:</label>
+      <input type="text" id="answer" [(ngModel)]="answer" name="answer" required>
+
+      <label for="image">Upload Image:</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" accept="image/*">
+
+      <div class="drag-drop-area" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+        Drag and drop an image here
+      </div>
+
+      <button type="submit">Create</button>
+      <button type="button" (click)="closeOverlay()">Cancel</button>
+    </form>
+
+    <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
+      {{ message }}
+    </div>
+  </div>
+</div>
