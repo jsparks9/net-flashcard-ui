@@ -1,13 +1,17 @@
 <div class="overlay">
   <div class="overlay-content">
     <button class="overlay-close-button" (click)="close()">✕</button>
-    <h2 class="overlay-title">Flash Cards</h2>
-  
+    
+    <h2 class="overlay-title">{{ deck.deckName }}</h2>
+    <p class="overlay-description">{{ deck.description }}</p>
+    
     <div class="button-group">
       <button class="btn-toggle" (click)="toggleView()">Card/Table Toggle</button>
-      <button class="btn-add" (click)="addFlashCard()">Add Flash Card</button>
+      <button class="btn-add" (click)="showCreateCardOverlay()">Add Card</button>
+      <button class="btn-edit-deck" (click)="editDeck()">Edit Info</button>
+      <button class="btn-delete-deck" (click)="deleteDeck()">Delete</button>
     </div>
-
+    
     <table class="flash-card-table">
       <thead>
         <tr>
@@ -29,3 +33,9 @@
     </table>
   </div>
 </div>
+<app-create-card 
+  #createCardOverlay 
+  (overlayCreateCardClosed)="handleCreateOverlayClosed()"
+  [uri] = "'/Deck/deck/' + deck.deckId"
+  [deckId] = "deck.deckId"
+  ></app-create-card>

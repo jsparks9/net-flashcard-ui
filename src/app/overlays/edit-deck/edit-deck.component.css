@@ -38,7 +38,7 @@
   margin-bottom: 20px;
 }
 
-.btn-toggle, .btn-add {
+.btn-toggle, .btn-add, .btn-edit-deck {
   background-color: #007bff;
   color: white;
   border: none;
@@ -49,8 +49,23 @@
   transition: background-color 0.3s ease;
 }
 
-.btn-toggle:hover, .btn-add:hover {
+.btn-toggle:hover, .btn-add:hover, .btn-edit-deck:hover {
   background-color: #0056b3;
+}
+
+.btn-delete-deck {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete-deck:hover {
+  background-color: #c82333;
 }
 
 .flash-card-table th:first-child,
@@ -143,9 +158,23 @@
   line-height: 1; /* Ensures that text is vertically centered */
 }
 
-
 .overlay-close-button:hover {
   background: red; 
   color: white;
   border: 2px solid red;
+}
+
+.overlay-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px; 
+  text-align: center;
+}
+
+.overlay-description {
+  margin-top: 0em;
+  font-size: 16px;
+  margin-bottom: 20px; 
+  text-align: center;
+  color: #555; 
 }

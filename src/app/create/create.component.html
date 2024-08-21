@@ -6,5 +6,9 @@
   </div>
   
   <app-create-deck #deckOverlay (overlayClosed)="handleOverlayClosed()"></app-create-deck>
-  <app-create-card #cardOverlay (overlayClosed)="handleOverlayClosed()"></app-create-card>
+  <app-create-card 
+  #cardOverlay 
+  (overlayClosed)="handleOverlayClosed()"
+  [uri] = "'/Card'"
+  ></app-create-card>
 </div>

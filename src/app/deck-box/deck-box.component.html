@@ -7,7 +7,7 @@
       <h6 class="deck-cards-number-text text-center mulish"># of Cards: {{deck.cards.length}}</h6>
       <button class="edit-button mulish" 
               *ngIf="(user$ | async)?.username === deck.user" 
-              (click)="editDeck($event)">Edit</button> 
+              (click)="editDeck($event)">Edit Deck</button> 
     </div>
   </div>
   <div>
@@ -15,7 +15,7 @@
   </div>
   <div class="deck-user">
     <h6 class="deck-user-text mulish">By: {{deck.user | truncate:9 }}</h6>
-  </div> <!-- Moved user info here -->
+  </div>
   <div class="grid">
     <ng-container *ngFor="let card of deck.cards">
       <div class="card-item">
