@@ -1,10 +1,15 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { loginFailure, loginSuccess, logout } from './auth.actions';
+import { loginFailure, loginSuccess, logout, setDecks } from './auth.actions';
+import Deck from '../models/Deck';
+import Card from '../models/Card';
 
 const baseUrl = "https://localhost:7174/api"
 
 export interface AuthState {
   baseUrl: string;
+  decks: Deck[];
+  myCards: Card[];
+  myDecks: Deck[];
   loggedIn: boolean;
   user: any;
   error: any;
@@ -12,6 +17,9 @@ export interface AuthState {
 
 export const initialState: AuthState = {
   baseUrl: baseUrl,
+  decks: [],
+  myCards: [],
+  myDecks: [],
   loggedIn: false,
   user: null,
   error: null
@@ -30,8 +38,8 @@ const _authReducer = createReducer(
   on(loginFailure, (state, { loginFailureResp }) => {
     return {
       ...state,
-      loggedIn: true,
-      user: {id:1, profile:null, admin:true, active:true, status:""},
+      loggedIn: false,
+      user: null,
       error: loginFailureResp,
     };
   }), 
@@ -43,6 +51,12 @@ const _authReducer = createReducer(
       error: null
     };
   }),
+  on(setDecks, (state, { decks }) => {
+    return {
+      ...state,
+      decks: decks
+    }
+  }),
 
 )
 
@@ -50,22 +64,15 @@ export function authReducer(state: AuthState | undefined, action: Action) {
   return _authReducer(state, action);
 }
 
-
-
-
-
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
 export const selectBaseUrl = createSelector(selectAuthState, s => s.baseUrl);
+
+export const selectAllDecks = createSelector(selectAuthState, s => s.decks);
 
 export const selectLoggedIn = createSelector(selectAuthState, s => s.loggedIn);
 
 export const selectUser = createSelector( selectAuthState, s => s.user);
 
-export const selectIsAdmin = createSelector( selectAuthState, s => s.user && s.user.admin);
-
 export const selectFirstLast = createSelector( selectAuthState, s => s.user.profile.firstName + ' ' + s.user.profile.lastName.charAt(0) + '.');
 
-export const selectUserId = createSelector( selectAuthState, s => s.user.id)
-
-export const selectAdminTeamId = createSelector( selectAuthState, s => s.user.teams[0].id)

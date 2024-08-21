@@ -1,6 +1,6 @@
 <div class="center">
   <div class="grid" >
-    <app-deck-box *ngFor="let deck of decks"
+    <app-deck-box *ngFor="let deck of decks$ | async"
     [deckId]= "deck.deckId"
     [numCards] = "deck.cards.length"
     [deckTitle] = "deck.deckName"

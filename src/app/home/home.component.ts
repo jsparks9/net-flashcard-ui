@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import * as fromAuth from "../auth/auth.reducer";
 import {Store} from "@ngrx/store";
 import Deck from '../models/Deck';
+import { DeckService } from '../services/deck/deck.service';
+import { setDecks } from '../auth/auth.actions';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +11,28 @@ import Deck from '../models/Deck';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isAdmin$ = this.store.select(fromAuth.selectIsAdmin);
+  private initialized = false;
   user$ = this.store.select(fromAuth.selectUser);
-  decks: Deck[] = [];
-
+  decks$ = this.store.select(fromAuth.selectAllDecks);
+  
   constructor(
+    private deckService: DeckService,
     private store: Store<fromAuth.AuthState>,
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.decks$.subscribe(decks => {
+      if (!this.initialized && decks != null && decks.length === 0) {
+        this.initialized = true;
+        this.fetchDecks();
+      }
+    });
+  }
 
+  fetchDecks(): void {
+    this.deckService.getAllDecks().subscribe((decks: Deck[]) => {
+      this.store.dispatch(setDecks({ decks }));
+    });
+  }
 
 }
