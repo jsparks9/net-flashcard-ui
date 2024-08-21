@@ -1,0 +1,15 @@
+<div class="overlay" *ngIf="isVisible">
+  <div class="overlay-content">
+    <h3>Remove Card</h3>
+    <p>Are you sure you want to remove this card?</p>
+
+    <label for="quizText">Quiz Text:</label>
+    <p id="quizText">{{ card?.quizText }}</p>
+
+    <label for="answer">Answer:</label>
+    <p id="answer">{{ card?.answer }}</p>
+
+    <button type="button" (click)="confirmRemove()">Confirm</button>
+    <button type="button" (click)="closeRemoveCardOverlay()">Cancel</button>
+  </div>
+</div>

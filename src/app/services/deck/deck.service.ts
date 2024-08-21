@@ -73,6 +73,18 @@ export class DeckService {
       })
     );
   }
+
+  removeCard(cardId: string, deckId: string) {
+    return combineLatest([this.user$, this.baseUrl$]).pipe(
+      filter(([user, baseUrl]) => user !== null && baseUrl !== undefined && baseUrl !== null),
+      switchMap(([user, baseUrl]) => {
+        const headers = new HttpHeaders()
+          .set('Authorization', `Bearer ${user.token}`)
+          .set('Content-Type', 'application/json');
+        return this.http.delete(`${baseUrl}/Deck/deck/${deckId}/card/${cardId}`, { headers });
+      })
+    );
+  }
   
   
   
