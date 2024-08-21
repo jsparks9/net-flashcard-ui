@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { catchError, of } from 'rxjs';
+import { catchError, map, of, take, tap } from 'rxjs';
 import { DeckService } from 'src/app/services/deck/deck.service';
+import * as fromAuth from 'src/app/auth/auth.reducer';
+import { Store } from '@ngrx/store';
+import { selectMyDecks } from 'src/app/auth/auth.reducer';
+import Deck from 'src/app/models/Deck';
+import { setMyDecks } from 'src/app/auth/auth.actions';
 
 @Component({
   selector: 'app-create-deck',
@@ -16,7 +21,10 @@ export class CreateDeckComponent {
 
   @Output() overlayClosed = new EventEmitter<void>();
 
-  constructor(private deckService: DeckService) {}
+  constructor(
+    private deckService: DeckService,
+    private store: Store<fromAuth.AuthState>
+  ) {}
 
   openOverlay() {
     this.isVisible = true;
@@ -85,6 +93,12 @@ export class CreateDeckComponent {
       .subscribe(response => {
         if (response) {
           this.displayMessage('Deck created successfully!', false);
+      
+          this.store.select(selectMyDecks).pipe(
+            take(1),
+            map((existingDecks: Deck[]) => [...existingDecks, response as Deck]),
+            tap((updatedDecks: Deck[]) => this.store.dispatch(setMyDecks({ decks: updatedDecks })))
+          ).subscribe();
         }
       });
   }
