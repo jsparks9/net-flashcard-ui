@@ -1,0 +1,23 @@
+<div class="overlay">
+  <div class="overlay-content">
+    <header class="overlay-header">
+      <h2>{{ deck.deckName }}</h2>
+      <div class="overlay-controls">
+        <button (click)="cyclePrevCard()">Previous</button>
+        <button (click)="randomizeCards()">Randomize</button>
+        <button (click)="cycleNextCard()">Next</button>
+        <button (click)="saveChanges()">Save</button>
+        <button class="overlay-close-button" (click)="close()">✕</button>
+      </div>
+    </header>
+    <section class="overlay-body">
+      <div class="card-question" (click)="cycleNextCard()">
+        <p>{{ currentCard.quizText }}</p>
+      </div>
+      <div class="card-answer" (click)="showAnswerToggle()">
+        <p *ngIf="showAnswer">{{ currentCard.answer }}</p>
+        <p *ngIf="!showAnswer">Click to show answer</p>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,20 +1,26 @@
-<div class="deck-container raiseUpOnHover">
+<div class="deck-container raiseUpOnHover" (click)="toggleOverlay()">
   <div class="deck-header">
     <div>
-      <h3 class="text-white mulish">{{deckTitle}}</h3>
+      <h3 class="text-white mulish">{{deck.deckName}}</h3>
     </div>
     <div class="d-flex align-items-center">
-      <h6 class="deck-cards-number-text text-center mulish"># of Cards: {{numCards}}</h6>
+      <h6 class="deck-cards-number-text text-center mulish"># of Cards: {{deck.cards.length}}</h6>
+      <h6 class="deck-cards-number-text text-center mulish">By: {{deck.user| truncate:9 }}</h6>
     </div>
   </div>
   <div>
-    <h5 class="deck-title-text p-3 mulish">{{deckDesc}}</h5>
+    <h5 class="deck-title-text p-3 mulish">{{deck.description}}</h5>
   </div>
   <div class="grid">
-    <ng-container *ngFor="let card of cards">
+    <ng-container *ngFor="let card of deck.cards">
       <div class="card-item">
         <button class="button-cell mulish">{{card.quizText| truncate:20 }}</button>
       </div>
     </ng-container>
   </div>
 </div>
+<app-quiz
+  *ngIf="showOverlay"
+  [deck]="deck"
+  (closeOverlay)="handleCloseOverlay()">
+</app-quiz>

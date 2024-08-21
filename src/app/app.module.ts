@@ -24,6 +24,8 @@ import { LoginComponent } from './login/login.component';
 import { DeckBoxComponent } from './deck-box/deck-box.component';
 import { TruncatePipe } from './utils/pipes/truncate';
 import { MydecksComponent } from './mydecks/mydecks.component';
+import { QuizComponent } from './overlays/quiz/quiz.component';
+import { CreateDeckComponent } from './overlays/create-deck/create-deck.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { MydecksComponent } from './mydecks/mydecks.component';
     LoginComponent,
     DeckBoxComponent,
     TruncatePipe,
-    MydecksComponent
+    MydecksComponent,
+    QuizComponent,
+    CreateDeckComponent
   ],
   imports: [
     BrowserModule,
