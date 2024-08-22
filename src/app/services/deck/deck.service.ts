@@ -10,9 +10,6 @@ import Card from 'src/app/models/Card';
   providedIn: 'root'
 })
 export class DeckService {
-  getDecks() {
-    throw new Error('Method not implemented.');
-  }
   baseUrl$ = this.store.select(fromAuth.selectBaseUrl);
   user$ = this.store.select(fromAuth.selectUser);
   
