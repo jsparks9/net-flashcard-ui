@@ -67,9 +67,5 @@ export class EditDeckComponent implements OnInit {
   handleCreateOverlayClosed() {}
   handleEditDeckoverlayClosed() {}
   handleRemoveCardoverlayClosed() {}
-  
-  showAnswer(card: Card) {
-    throw new Error('Method not implemented.');
-    }
 
 }
