@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthState } from '../auth/auth.reducer';
 import { loginRequest } from '../auth/auth.actions';
+import * as fromAuth from "../auth/auth.reducer";
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { loginRequest } from '../auth/auth.actions';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  error$ = this.store.select(fromAuth.selectExploreDecks);
 
   constructor(
     private store: Store<AuthState>

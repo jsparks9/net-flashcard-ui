@@ -16,6 +16,21 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
+  register(username: string, fullName: string, email:string, password: string) {
+    const request = {
+      username,
+      fullName,
+      email,
+      password
+    };
+    
+    return this.baseUrl$.pipe(
+      filter(baseUrl => baseUrl !== undefined && baseUrl !== null),
+      switchMap(baseUrl => this.http.post<UserInfo>(`${baseUrl}/Auth/register`, request))
+    );
+    
+  }
+  
   login(username: string, password: string) {
     const request = {
       username,

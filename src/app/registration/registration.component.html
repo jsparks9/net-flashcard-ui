@@ -1,1 +1,49 @@
-<p>registration works!</p>
+<div class="register-container">
+  <div class="register-box">
+    <h2>Register</h2>
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" [(ngModel)]="username" required #usernameInput="ngModel">
+        <div *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)" class="error-message">
+          Username is required.
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" [(ngModel)]="fullName" required #fullNameInput="ngModel">
+        <div *ngIf="fullNameInput.invalid && (fullNameInput.dirty || fullNameInput.touched)" class="error-message">
+          Full Name is required.
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" [(ngModel)]="email" required #emailInput="ngModel">
+        <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="error-message">
+          A valid email is required.
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" [(ngModel)]="password" required #passwordInput="ngModel">
+        <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)" class="error-message">
+          Password is required.
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" [(ngModel)]="confirmPassword" required #confirmPasswordInput="ngModel">
+        <div *ngIf="confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)" class="error-message">
+          Password confirmation is required.
+        </div>
+        <div *ngIf="password !== confirmPassword && confirmPasswordInput.dirty" class="error-message">
+          Passwords do not match.
+        </div>
+      </div>
+      <button type="submit" class="register-button" [disabled]="registerForm.invalid || password !== confirmPassword">Register</button>
+    </form>
+    <div class="login-invite">
+      <p>Already have an account? <a href="/login">Login here</a>.</p>
+    </div>    
+  </div>
+</div>

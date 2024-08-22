@@ -3,6 +3,21 @@ import UserInfo from '../models/UserInfo';
 import Deck from '../models/Deck';
 
 
+export const registerRequest = createAction(
+  '[Auth] Register Request',
+  props<{ creds: {username: string; password: string; email: string; fullName: string}}>()
+);
+
+export const registerSuccess = createAction(
+  '[Auth] Register Success',
+  props<{ registerSuccessResp: UserInfo }>()
+);
+
+export const registerFailure = createAction(
+  '[Auth] Register Failure',
+  props<{ registerFailureResp: any }>()
+);
+
 export const loginRequest = createAction(
   '[Auth] Login Request',
   props<{ creds: {username: string; password: string}}>()

@@ -3,7 +3,7 @@ import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { AuthService } from './auth.service';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { loginFailure, loginRequest, loginSuccess } from './auth.actions';
+import { loginFailure, loginRequest, loginSuccess, registerFailure, registerRequest, registerSuccess } from './auth.actions';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -32,7 +32,34 @@ export class AuthEffects {
       ),
     { dispatch: false }
   );
-  
+
+  registerRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(registerRequest),
+      switchMap((action) =>
+        this.authService.register(
+          action.creds.username, 
+          action.creds.fullName, 
+          action.creds.email,
+          action.creds.password
+        ).pipe(
+          map((registerSuccessResp) => registerSuccess({ registerSuccessResp })),
+          catchError((error) => of(registerFailure({ registerFailureResp: error })))
+        )
+      )
+    )
+  );
+
+  registerSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(registerSuccess),
+        tap(() => {
+          this.router.navigateByUrl('/create');
+        })
+      ),
+    { dispatch: false }
+  );
 
   constructor(
     private actions$: Actions,
