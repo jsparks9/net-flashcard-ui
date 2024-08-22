@@ -22,8 +22,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let card of deck.cards">
-          <td>{{ card.quizText }}</td>
-          <td>{{ card.answer }}</td>
+          <td class="truncate-text">{{ card.quizText }}</td>
+          <td class="truncate-text">{{ card.answer }}</td>
           <td class="options">
             <button class="btn-edit" 
               (click)="patchCard(card, card.quizText, card.answer, card.cardId)"
