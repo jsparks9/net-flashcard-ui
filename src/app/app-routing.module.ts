@@ -6,6 +6,7 @@ import { CreateComponent } from './create/create.component';
 import { HelpPageComponent } from './help-page/help-page.component';
 import { LoginComponent } from './login/login.component';
 import { MydecksComponent } from './mydecks/mydecks.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'mydecks', component: MydecksComponent, canActivate: [RouterGuardService]},
   { path: 'help', component: HelpPageComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegistrationComponent },
 ];
 
 @NgModule({

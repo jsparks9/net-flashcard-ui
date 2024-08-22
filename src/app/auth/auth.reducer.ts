@@ -1,5 +1,5 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { loginFailure, loginSuccess, logout, setDecks, setMyDecks } from './auth.actions';
+import { loginFailure, loginSuccess, logout, registerRequest, registerSuccess, setDecks, setMyDecks } from './auth.actions';
 import Deck from '../models/Deck';
 import Card from '../models/Card';
 
@@ -32,6 +32,14 @@ const _authReducer = createReducer(
       ...state,
       loggedIn: true,
       user: loginSuccessResp,
+      error: null
+    };
+  }), 
+  on(registerSuccess, (state, { registerSuccessResp }) => {
+    return {
+      ...state,
+      loggedIn: true,
+      user: registerSuccessResp,
       error: null
     };
   }), 
