@@ -102,13 +102,15 @@
 .options {
   text-align: center;
   vertical-align: top;
+  display: flex;
+  white-space: nowrap;
 }
 
 .btn-edit, .btn-delete {
   background-color: transparent;
   border: 2px solid; /* Adds the border */
   border-radius: 5px; /* Adds slight rounding to corners */
-  padding: 5px; /* Adds padding inside the button */
+  padding: 5px 10px;
   cursor: pointer;
   font-size: 18px;
   margin: 0 5px;

@@ -17,11 +17,12 @@
     <h6 class="deck-user-text mulish">By: {{deck.user | truncate:9 }}</h6>
   </div>
   <div class="grid">
-    <ng-container *ngFor="let card of deck.cards">
+    <ng-container *ngFor="let card of deck.cards | slice:0:4">
       <div class="card-item">
         <button class="button-cell mulish">{{card.quizText | truncate:20 }}</button>
       </div>
     </ng-container>
+    
   </div>
 </div>
 <app-quiz

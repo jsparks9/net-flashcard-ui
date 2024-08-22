@@ -13,3 +13,9 @@ body {
   -moz-user-select: none; /* For Firefox */
   -ms-user-select: none; /* For Internet Explorer and Edge */
 }
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
