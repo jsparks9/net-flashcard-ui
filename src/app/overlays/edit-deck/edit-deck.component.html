@@ -12,7 +12,7 @@
       <button class="btn-delete-deck" (click)="deleteDeck()">Delete</button>
     </div>
     
-    <table class="flash-card-table">
+    <table *ngIf="isTableView" class="flash-card-table">
       <thead>
         <tr>
           <th>Question</th>
@@ -31,6 +31,20 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- Card View -->
+    <div *ngIf="!isTableView" class="card-container">
+      <div class="card" *ngFor="let card of cards">
+        <p class="card-question">{{ card.quizText }}</p>
+        <button 
+          class="btn-show-answer" 
+          [ngClass]="{'answer-visible': card.isAnswerVisible}"
+          (click)="card.isAnswerVisible = !card.isAnswerVisible">
+          {{ card.isAnswerVisible ? card.answer : 'Show Answer' }}
+        </button>
+      </div>
+    </div>
+
   </div>
 </div>
 <app-create-card 

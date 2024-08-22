@@ -1,23 +1,35 @@
-import { Component, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ViewChild, OnInit } from '@angular/core';
 import Deck from 'src/app/models/Deck';
 import { CreateCardComponent } from '../create-card/create-card.component';
 import { PatchDeckComponent } from '../patch-deck/patch-deck.component';
 import { RemoveCardComponent } from '../remove-card/remove-card.component';
 import Card from 'src/app/models/Card';
 
+export interface ExpandedCard extends Card {
+  isAnswerVisible: boolean;
+}
+
 @Component({
   selector: 'app-edit-deck',
   templateUrl: './edit-deck.component.html',
   styleUrls: ['./edit-deck.component.css']
 })
-export class EditDeckComponent {
+export class EditDeckComponent implements OnInit {
+  isTableView: boolean = true;
   message = '';
   isError = false;
+  cards!: ExpandedCard[];
   @Input() deck!: Deck;
   @Output() closeOverlay = new EventEmitter<void>();
   @ViewChild('createCardOverlay') createCardOverlay: CreateCardComponent | undefined;
   @ViewChild('editDeckOverlay') editDeckOverlay: PatchDeckComponent | undefined;
   @ViewChild('removeCardOverlay') removeCardOverlay: RemoveCardComponent | undefined;
+
+  ngOnInit() {
+    this.cards = this.deck.cards.map(card => ({
+      ...card, isAnswerVisible: false 
+    })) as ExpandedCard[];
+  }
 
   saveDeck() {
     throw new Error('Method not implemented.');
@@ -36,8 +48,7 @@ export class EditDeckComponent {
   }
 
   toggleView() {
-    console.log("Toggle View");
-    // Implement the logic to toggle between card and table view
+    this.isTableView = !this.isTableView;
   }
 
   showCreateCardOverlay() {
@@ -57,4 +68,8 @@ export class EditDeckComponent {
   handleEditDeckoverlayClosed() {}
   handleRemoveCardoverlayClosed() {}
   
+  showAnswer(card: Card) {
+    throw new Error('Method not implemented.');
+    }
+
 }
