@@ -53,15 +53,28 @@ This project is a full stack application built using .NET Core for the backend a
 
 - **Base URL**: `https://localhost:7174/api`
 
-  Example endpoints:
-  - `GET /decks` - Retrieves all decks.
-  - `POST /decks` - Creates a new deck.
-  - `GET /decks/{id}` - Retrieves a specific deck by ID.
+- #### Auth
+  
+    - `POST /Auth/login` - Authenticates a user and returns a JWT token.
+    - `POST /Auth/register` - Registers a new user.
 
-### UI Access
+- #### Card
+  
+    - `GET /Card` - Retrieves all cards.
+    - `POST /Card` - Creates a new card.
+    - `GET /Card/{id}` - Retrieves a specific card by ID.
+    - `PATCH /Card/{id}` - Updates a specific card by ID.
+    - `DELETE /Card/{id}` - Deletes a specific card by ID.
 
-- **Frontend URL**: `http://localhost:4200`
+- #### Deck
+  
+    - `GET /Deck` - Retrieves all decks.
+    - `POST /Deck` - Creates a new deck.
+    - `GET /Deck/user/{username}` - Retrieves all decks for a specific user by username.
+    - `GET /Deck/getmydecks` - Retrieves all decks for the authenticated user.
+    - `GET /Deck/{id}` - Retrieves a specific deck by ID.
+    - `PATCH /Deck/{id}` - Updates a specific deck by ID.
+    - `DELETE /Deck/{id}` - Deletes a specific deck by ID.
+    - `POST /Deck/deck/{id}` - Adds a card to a specific deck by deck ID.
+    - `DELETE /Deck/deck/{deckId}/card/{cardId}` - Removes a specific card from a deck by deck ID and card ID.
 
-### Future Enhancements
-
-- Improved UI/UX
