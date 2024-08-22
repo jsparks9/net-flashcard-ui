@@ -59,6 +59,18 @@ export class DeckService {
     );
   }
 
+  patchCard(card: { QuizText: string; Answer: string; Image: string }, cardId: string) {
+    return combineLatest([this.user$, this.baseUrl$]).pipe(
+      filter(([user, baseUrl]) => user !== null && baseUrl !== undefined && baseUrl !== null),
+      switchMap(([user, baseUrl]) => {
+        const headers = new HttpHeaders()
+          .set('Authorization', `Bearer ${user.token}`)
+          .set('Content-Type', 'application/json');
+        return this.http.patch(`${baseUrl}/Card/${cardId}`, card, { headers });
+      })
+    );
+  }
+
   createCard(card: { QuizText: string; Answer: string; Image: string }, uri: string) {
     return combineLatest([this.user$, this.baseUrl$]).pipe(
       filter(([user, baseUrl]) => user !== null && baseUrl !== undefined && baseUrl !== null),

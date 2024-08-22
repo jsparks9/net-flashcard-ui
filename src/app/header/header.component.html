@@ -1,24 +1,21 @@
 <ng-container>
-  <header class="header">
+  <header class="header not-selectable">
     <div class="left-wrap">
       <div routerLink="">
         <img src="assets/Logo.png">
       </div>
-      <ul routerLink="">Explore</ul>
-      <ul routerLink="/create">Create</ul>
-      <ul *ngIf="loggedIn$ | async" routerLink="/mydecks">My Decks</ul>
-      <ul routerLink="/help">Help</ul>
+      <ul [ngClass]="{ 'active': isRouteActive('/') }" routerLink="">Explore</ul>
+      <ul [ngClass]="{ 'active': isRouteActive('/create') }" routerLink="/create">Create</ul>
+      <ul *ngIf="loggedIn$ | async" [ngClass]="{ 'active': isRouteActive('/mydecks') }" routerLink="/mydecks">My Decks</ul>
+      <ul [ngClass]="{ 'active': isRouteActive('/help') }" routerLink="/help">Help</ul>
     </div>
     <div class="justify-content-end">
-      <ul class="selected" *ngIf="!(loggedIn$ | async)" routerLink="/login">
+      <ul [ngClass]="{ 'active': isRouteActive('/login') }" *ngIf="!(loggedIn$ | async)" routerLink="/login">
         Log In
       </ul>
-      <ul class="selected" *ngIf="(loggedIn$ | async)" routerLink=""  (click)="doLogout()">
+      <ul *ngIf="(loggedIn$ | async)" routerLink="" (click)="doLogout()">
         Log Out
       </ul>
     </div>
-    
   </header>
-
 </ng-container>
-

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import { Store } from '@ngrx/store';
 import * as fromAuth from '../auth/auth.reducer'
 import { logout } from '../auth/auth.actions';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,12 @@ export class HeaderComponent {
 
   constructor(
     private store: Store<fromAuth.AuthState>,
+    private router: Router, private route: ActivatedRoute
   ) { }
+
+  isRouteActive(route: string): boolean {
+    return this.router.url === route;
+  }
 
   doLogout(): void {
     this.store.dispatch(logout());

@@ -1,5 +1,5 @@
 <div class="overlay">
-  <div class="overlay-content">
+  <div class="overlay-content not-selectable">
     <button class="overlay-close-button" (click)="close()">✕</button>
     <header class="overlay-header">
       <h2>{{ deck.deckName }}</h2>
@@ -7,7 +7,7 @@
         <button (click)="cyclePrevCard()">Previous</button>
         <button (click)="randomizeCards()">Randomize</button>
         <button (click)="cycleNextCard()">Next</button>
-        <button (click)="saveChanges()">Save</button>
+        <!-- <button (click)="saveChanges()">Save</button> -->
       </div>
     </header>
     <section class="overlay-body">

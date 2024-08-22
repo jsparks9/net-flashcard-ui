@@ -5,6 +5,7 @@ import { PatchDeckComponent } from '../patch-deck/patch-deck.component';
 import { RemoveCardComponent } from '../remove-card/remove-card.component';
 import Card from 'src/app/models/Card';
 import { DeleteDeckComponent } from '../delete-deck/delete-deck.component';
+import { PatchCardComponent } from '../patch-card/patch-card.component';
 
 export interface ExpandedCard extends Card {
   isAnswerVisible: boolean;
@@ -25,6 +26,7 @@ export class EditDeckComponent implements OnInit {
   @ViewChild('createCardOverlay') createCardOverlay: CreateCardComponent | undefined;
   @ViewChild('editDeckOverlay') editDeckOverlay: PatchDeckComponent | undefined;
   @ViewChild('removeCardOverlay') removeCardOverlay: RemoveCardComponent | undefined;
+  @ViewChild('patchCardOverlay') patchCardOverlay: PatchCardComponent | undefined;
   @ViewChild('deleteDeckOverlay') deleteDeckOverlay: DeleteDeckComponent | undefined;
 
   ngOnInit() {
@@ -57,9 +59,8 @@ export class EditDeckComponent implements OnInit {
     this.createCardOverlay?.openOverlay();
   }
 
-  editCard(card: any) {
-    console.log("Edit Card", card);
-    // Implement the logic to edit the selected card
+  patchCard(card: any, q: string, a: string, id: string) {
+    this.patchCardOverlay?.openOverlay(card, q, a, id);
   }
 
   removeCard(card: Card) {
@@ -67,8 +68,9 @@ export class EditDeckComponent implements OnInit {
   }
 
   handleCreateOverlayClosed() {}
-  handleEditDeckoverlayClosed() {}
-  handleRemoveCardoverlayClosed() {}
-  handleDeleteDeckOverlayoverlayClosed() {}
+  handleEditDeckOverlayClosed() {}
+  handleRemoveCardOverlayClosed() {}
+  handleDeleteDeckOverlayClosed() {}
+  handlePatchCardoverlayClosed() {}
 
 }

@@ -31,6 +31,8 @@ import { EditDeckComponent } from './overlays/edit-deck/edit-deck.component';
 import { PatchDeckComponent } from './overlays/patch-deck/patch-deck.component';
 import { RemoveCardComponent } from './overlays/remove-card/remove-card.component';
 import { DeleteDeckComponent } from './overlays/delete-deck/delete-deck.component';
+import { PatchCardComponent } from './overlays/patch-card/patch-card.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { DeleteDeckComponent } from './overlays/delete-deck/delete-deck.componen
     EditDeckComponent,
     PatchDeckComponent,
     RemoveCardComponent,
-    DeleteDeckComponent
+    DeleteDeckComponent,
+    PatchCardComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
