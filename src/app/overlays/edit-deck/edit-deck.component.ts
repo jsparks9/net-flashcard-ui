@@ -4,6 +4,7 @@ import { CreateCardComponent } from '../create-card/create-card.component';
 import { PatchDeckComponent } from '../patch-deck/patch-deck.component';
 import { RemoveCardComponent } from '../remove-card/remove-card.component';
 import Card from 'src/app/models/Card';
+import { DeleteDeckComponent } from '../delete-deck/delete-deck.component';
 
 export interface ExpandedCard extends Card {
   isAnswerVisible: boolean;
@@ -24,6 +25,7 @@ export class EditDeckComponent implements OnInit {
   @ViewChild('createCardOverlay') createCardOverlay: CreateCardComponent | undefined;
   @ViewChild('editDeckOverlay') editDeckOverlay: PatchDeckComponent | undefined;
   @ViewChild('removeCardOverlay') removeCardOverlay: RemoveCardComponent | undefined;
+  @ViewChild('deleteDeckOverlay') deleteDeckOverlay: DeleteDeckComponent | undefined;
 
   ngOnInit() {
     this.cards = this.deck.cards.map(card => ({
@@ -40,7 +42,7 @@ export class EditDeckComponent implements OnInit {
   }
 
   deleteDeck() {
-    throw new Error('Method not implemented.');
+    this.deleteDeckOverlay?.openOverlay();
   }
 
   close() {
@@ -67,5 +69,6 @@ export class EditDeckComponent implements OnInit {
   handleCreateOverlayClosed() {}
   handleEditDeckoverlayClosed() {}
   handleRemoveCardoverlayClosed() {}
+  handleDeleteDeckOverlayoverlayClosed() {}
 
 }
