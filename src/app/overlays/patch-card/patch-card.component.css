@@ -1,0 +1,138 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 12;
+}
+
+.overlay-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-content h3 {
+  margin-top: 0;
+}
+
+.overlay-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.overlay-content button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.overlay-content button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+}
+
+.overlay-content button[type="button"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+.overlay-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+}
+
+.overlay-content h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.overlay-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.overlay-content input[type="text"],
+.overlay-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.overlay-content input[type="text"]:focus,
+.overlay-content textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.overlay-content textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.overlay-content button {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  width: 100%;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.overlay-content button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.overlay-content button[type="submit"]:hover {
+  background-color: #218838;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+
+.overlay-content button[type="button"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+.overlay-content button[type="button"]:hover {
+  background-color: #c82333;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+}
+
+.success-message {
+  color: #28a745;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 15px;
+  text-align: center;
+}
+

@@ -25,7 +25,9 @@
           <td>{{ card.quizText }}</td>
           <td>{{ card.answer }}</td>
           <td class="options">
-            <button class="btn-edit" (click)="editCard(card)"><i class="bi bi-pencil-square"></i></button>
+            <button class="btn-edit" 
+              (click)="patchCard(card, card.quizText, card.answer, card.cardId)"
+            ><i class="bi bi-pencil-square"></i></button>
             <button class="btn-delete emoji" (click)="removeCard(card)"><i class="bi bi-trash"></i></button>
           </td>
         </tr>
@@ -33,7 +35,7 @@
     </table>
 
     <!-- Card View -->
-    <div *ngIf="!isTableView" class="card-container">
+    <div *ngIf="!isTableView" class="card-container not-selectable">
       <div class="card" *ngFor="let card of cards">
         <p class="card-question">{{ card.quizText }}</p>
         <button 
@@ -56,19 +58,23 @@
   ></app-create-card>
 <app-patch-deck
   #editDeckOverlay
-  (editDeckoverlayClosed)="handleEditDeckoverlayClosed()"
+  (editDeckoverlayClosed)="handleEditDeckOverlayClosed()"
   [deck]="deck"
   [deckName]="deck.deckName"
   [description]="deck.description"
 ></app-patch-deck>
 <app-remove-card
   #removeCardOverlay
-  (removeCardoverlayClosed)="handleRemoveCardoverlayClosed()"
+  (removeCardoverlayClosed)="handleRemoveCardOverlayClosed()"
   [deckId]="deck.deckId"
 ></app-remove-card>
 <app-delete-deck
   #deleteDeckOverlay
-  (deleteDeckoverlayClosed)="handleDeleteDeckOverlayoverlayClosed()"
+  (deleteDeckoverlayClosed)="handleDeleteDeckOverlayClosed()"
   [deck]="deck"
   [deleteType]="'deckwithunique'"
 ></app-delete-deck>
+<app-patch-card
+  #patchCardOverlay
+  (patchCardoverlayClosed)="handlePatchCardoverlayClosed()"
+></app-patch-card>

@@ -1,0 +1,21 @@
+<div class="overlay" *ngIf="isVisible">
+  <div class="overlay-content">
+    <h3>Edit Card</h3>
+    <form (ngSubmit)="patchCard()">
+      <label for="question">Question:</label>
+      <input type="text" id="question" [(ngModel)]="question" name="question" required>
+
+      <label for="answer">Answer:</label>
+      <textarea id="answer" [(ngModel)]="answer" name="answer"></textarea>
+
+
+      <button type="submit">Edit</button>
+      <button type="button" (click)="closePatchCardOverlay()">Cancel</button>
+    </form>
+
+    <!-- Message Display -->
+    <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
+      {{ message }}
+    </div>
+  </div>
+</div>

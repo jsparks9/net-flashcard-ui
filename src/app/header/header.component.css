@@ -34,3 +34,12 @@ img {
   justify-content: flex-end;
   align-items: flex-end;
 }
+
+.active {
+  font-weight: bold;
+  color: #f00; 
+}
+
+ul {
+  cursor: pointer;
+}
